@@ -10,8 +10,13 @@
         <Button Margin="5" Height="50" Content="Create Random Columns"
                 VerticalAlignment="Top" HorizontalAlignment="Left"
                 Command="{Binding CreateRandomColumnsCommand}"/>
-        <local:CustomDataGrid AutoGenerateColumns="True" BindableColumns="{Binding DataContext.RandomColumns}" 
+        <local:CustomDataGrid AutoGenerateColumns="False" BindableColumns="{Binding DataContext.RandomColumns}" 
                               Margin="0,60,0,0"
-                              ItemsSource="{Binding TestDataSource}"/>
+                              ItemsSource="{Binding TestDataSource}">
+            <local:CustomDataGrid.Columns>
+                <DataGridTextColumn Header="Property 1" Binding="{Binding Property1}"/>
+                <DataGridTextColumn Header="Property 2" Binding="{Binding Property2}"/>
+            </local:CustomDataGrid.Columns>
+        </local:CustomDataGrid>
     </Grid>
 </Window>

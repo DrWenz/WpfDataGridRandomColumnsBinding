@@ -71,16 +71,22 @@ namespace WpfDataGridRandomColumnsBinding
             ObservableCollection<TestClass> data = new ObservableCollection<TestClass>();
             for (int i = 0; i < rnd.Next(20,30); i++)
             {
-                data.Add(new TestClass("hallo " + i, "irgendwas" + i, "jihaaa" + i));
+                data.Add(new TestClass("hallo " + i, "irgendwas" + i, 
+                    new List<SubTestClass>()
+                    {
+                        new SubTestClass("ListProperty 1", "ajasjdsdjd"),
+                        new SubTestClass("ListProperty 2", "2424324"),
+                        new SubTestClass("ListProperty 3", "1x3x2x/5"),
+                    }));
             }
 
             ObservableCollection<DataGridColumn> columns = new ObservableCollection<DataGridColumn>();
-            for (int i = 0; i < rnd.Next(1,12); i++)
+            for (int i = 0; i < data[0].Property3.Count; i++)
             {
                 columns.Add(new DataGridTextColumn()
                 {
-                    Header = "Erste Spalte",
-                    Binding = new Binding("Property1")
+                    Header = data[0].Property3[i].Name,
+                    Binding = new Binding(String.Format("Property3[{0}].Value",i))
                 });
             }
 
